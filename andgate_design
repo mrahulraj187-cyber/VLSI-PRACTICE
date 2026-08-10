@@ -1,7 +1,0 @@
-module andgate(
-    input a,b,
-    output y
-);
-and h1(y,a,b);
-
-endmodule
