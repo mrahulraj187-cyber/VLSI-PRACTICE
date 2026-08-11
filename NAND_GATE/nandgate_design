@@ -1,1 +1,8 @@
+module nandgate(
+    input a,
+    input b,
+    output y
 
+);
+nand h1(y,a,b);
+endmodule
