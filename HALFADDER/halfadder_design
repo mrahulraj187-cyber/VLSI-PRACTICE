@@ -1,0 +1,9 @@
+module halfadder(
+    input a,
+    input b,
+    output sum,
+    output carry
+);
+xor h1(sum,a,b);
+and h2(carry,a,b);
+endmodule
