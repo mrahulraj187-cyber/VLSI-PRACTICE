@@ -1,0 +1,21 @@
+module halfadder(
+    input a,
+    input b,
+    output sum,
+    output carry
+);
+xor h1(sum,a,b);
+and h2(carry,a,b);
+endmodule
+module fulladder(
+    input a,
+    input b,
+    input cin,
+    output sum,
+    output carry
+);
+wire sum1,carry1,carry2;
+halfadder h1(.a(a),.b(b),.sum(sum1),.carry(carry1));
+halfadder h2(.a(sum1),.b(cin),.sum(sum),.carry(carry2));
+or o1(carry,carry2,carry1);
+endmodule
