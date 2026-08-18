@@ -1,0 +1,39 @@
+module mux_tb();
+
+reg i0, i1, i2, i3;
+reg s0, s1;
+wire y;
+
+mux dut(
+    .i0(i0),
+    .i1(i1),
+    .i2(i2),
+    .i3(i3),
+    .s0(s0),
+    .s1(s1),
+    .y(y)
+);
+
+integer a, b;
+
+initial begin
+    $dumpfile("mux.vcd");
+    $dumpvars(0, mux_tb);
+
+    $monitor("i0=%b, i1=%b, i2=%b, i3=%b, s1=%b, s0=%b, y=%b",
+             i0, i1, i2, i3, s1, s0, y);
+
+    for (a = 0; a < 16; a = a + 1) begin
+        for (b = 0; b < 4; b = b + 1) begin
+
+            {i0, i1, i2, i3} = a;
+            {s1, s0} = b;
+
+            #5;
+        end
+    end
+
+    $finish;
+end
+
+endmodule
