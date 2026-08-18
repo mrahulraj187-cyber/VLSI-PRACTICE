@@ -1,0 +1,34 @@
+module mux2_tb();
+
+reg i0, i1;
+reg s;
+wire y;
+
+mux2 dut(
+    .i0(i0),
+    .i1(i1),
+    .s(s),
+    .y(y)
+);
+
+integer a;
+
+initial begin
+
+    $dumpfile("mux2.vcd");
+    $dumpvars(0, mux2_tb);
+
+    $monitor("i0=%b, i1=%b, s=%b, y=%b",
+             i0, i1, s, y);
+
+    for (a = 0; a < 8; a = a + 1) begin
+
+        {i0, i1, s} = a;
+
+        #5;
+    end
+
+    $finish;
+end
+
+endmodule
