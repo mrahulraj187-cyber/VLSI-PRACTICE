@@ -1,0 +1,22 @@
+module mux32_tb;
+
+reg [31:0]a;
+reg [7:0]s;
+wire y;
+
+mux32 dut(
+    .a(a),
+    .s(s),
+    .y(y)
+);
+
+initial begin
+    $dumpfile("mux32.vcd");
+    $dumpvars(0,mux32_tb);
+    $monitor("a=%b,s=%b,y=%b",a,s,y);
+    a=32'd12;s=8'd3;
+    #5;
+    $finish;
+    
+end
+endmodule
