@@ -1,0 +1,49 @@
+module mux8_tb();
+
+reg i0, i1, i2, i3, i4, i5, i6, i7;
+reg s0, s1, s2;
+wire y;
+
+mux8 dut(
+    .i0(i0),
+    .i1(i1),
+    .i2(i2),
+    .i3(i3),
+    .i4(i4),
+    .i5(i5),
+    .i6(i6),
+    .i7(i7),
+    .s0(s0),
+    .s1(s1),
+    .s2(s2),
+    .y(y)
+);
+
+integer a;
+
+initial begin
+    $dumpfile("mux8.vcd");
+    $dumpvars(0, mux8_tb);
+
+    $monitor("i=%b%b%b%b%b%b%b%b, s=%b%b%b, y=%b",
+             i7,i6,i5,i4,i3,i2,i1,i0,
+             s2,s1,s0,y);
+
+    i0=0;
+    i1=1;
+    i2=0;
+    i3=1;
+    i4=0;
+    i5=1;
+    i6=0;
+    i7=1;
+
+    for(a=0; a<8; a=a+1) begin
+        {s2,s1,s0}=a;
+        #5;
+    end
+
+    $finish;
+end
+
+endmodule
