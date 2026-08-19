@@ -1,0 +1,23 @@
+module mux16_tb;
+
+reg [15:0]a;
+reg [3:0]s;
+wire y;
+
+mux16 dut(
+    .a(a),
+    .s(s),
+    .y(y)
+);
+
+initial begin
+    $dumpfile("mux16.vcd");
+    $dumpvars(0,mux16_tb);
+    $monitor("a=%b,s=%b,y=%b",a,s,y);
+    a=16'd12;s=4'd3;
+    #5;
+    $finish;
+    
+end
+endmodule
+    
