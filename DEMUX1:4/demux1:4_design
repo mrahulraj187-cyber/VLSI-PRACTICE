@@ -1,0 +1,12 @@
+module demux4(
+    input i,
+    input s0,s1,
+    output y0,y1,y2,y3
+);
+
+assign y0 = i & ~s1 & ~s0; 
+assign y1 = i & ~s1 & s0;
+assign y2 = i & s1 & ~s0;
+assign y3 = i & s1 & s0;
+
+endmodule
