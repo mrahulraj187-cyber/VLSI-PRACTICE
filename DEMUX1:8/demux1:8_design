@@ -1,0 +1,20 @@
+module demux8(
+    input i,
+    input [2:0] s,
+    output reg [7:0] y
+);
+
+integer k;
+
+always @(*) begin
+
+    y = 8'b00000000;
+
+    for(k=0; k<8; k=k+1) begin
+        if(s == k)
+            y[k] = i;
+    end
+
+end
+
+endmodule
