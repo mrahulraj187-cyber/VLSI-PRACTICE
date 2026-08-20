@@ -1,0 +1,42 @@
+module demux8_tb();
+
+reg i;
+reg [2:0] s;
+wire [7:0] y;
+
+demux8 dut(
+    .i(i),
+    .s(s),
+    .y(y)
+);
+
+integer a;
+
+initial begin
+
+    $dumpfile("demux8.vcd");
+    $dumpvars(0, demux8_tb);
+
+    $monitor("i=%b, s=%b, y=%b", i, s, y);
+
+    
+    i = 0;
+
+    for(a=0; a<8; a=a+1) begin
+        s = a;
+        #5;
+    end
+
+    
+    i = 1;
+
+    for(a=0; a<8; a=a+1) begin
+        s = a;
+        #5;
+    end
+
+    $finish;
+
+end
+
+endmodule
