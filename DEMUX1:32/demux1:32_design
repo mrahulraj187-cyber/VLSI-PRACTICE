@@ -1,0 +1,20 @@
+module demux32(
+    input i,
+    input [4:0] s,
+    output reg [31:0] y
+);
+
+integer k;
+
+always @(*) begin
+
+    y = 16'b0;
+
+    for(k=0; k<32; k=k+1) begin
+        if(s == k)
+            y[k] = i;
+    end
+
+end
+
+endmodule
