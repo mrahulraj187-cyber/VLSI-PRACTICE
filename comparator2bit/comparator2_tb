@@ -1,0 +1,38 @@
+module comparator2_tb();
+
+reg [1:0] a;
+reg [1:0] b;
+wire gt;
+wire eq;
+wire lt;
+
+comparator2 dut(
+    .a(a),
+    .b(b),
+    .gt(gt),
+    .eq(eq),
+    .lt(lt)
+);
+
+integer x, y;
+
+initial begin
+
+    $dumpfile("comparator2.vcd");
+    $dumpvars(0, comparator2_tb);
+
+    $monitor("a=%b,b=%b,gt=%b,eq=%b,lt=%b", a,b,gt,eq,lt);
+
+    for(x=0; x<4; x=x+1) begin
+        for(y=0; y<4; y=y+1) begin
+            a=x;
+            b=y;
+            #5;
+        end
+    end
+
+    $finish;
+
+end
+
+endmodule
