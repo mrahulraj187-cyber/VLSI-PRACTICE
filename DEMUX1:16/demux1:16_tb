@@ -1,0 +1,42 @@
+module demux16_tb();
+
+reg i;
+reg [3:0] s;
+wire [15:0] y;
+
+demux16 dut(
+    .i(i),
+    .s(s),
+    .y(y)
+);
+
+integer a;
+
+initial begin
+
+    $dumpfile("demux16.vcd");
+    $dumpvars(0, demux16_tb);
+
+    $monitor("i=%b, s=%b, y=%b", i, s, y);
+
+    
+    i = 0;
+
+    for(a=0; a<16; a=a+1) begin
+        s = a;
+        #5;
+    end
+
+    
+    i = 1;
+
+    for(a=0; a<16; a=a+1) begin
+        s = a;
+        #5;
+    end
+
+    $finish;
+
+end
+
+endmodule
