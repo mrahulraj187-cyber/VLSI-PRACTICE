@@ -1,0 +1,42 @@
+module demux32_tb();
+
+reg i;
+reg [4:0] s;
+wire [31:0] y;
+
+demux32 dut(
+    .i(i),
+    .s(s),
+    .y(y)
+);
+
+integer a;
+
+initial begin
+
+    $dumpfile("demux32.vcd");
+    $dumpvars(0, demux32_tb);
+
+    $monitor("i=%b, s=%b, y=%b", i, s, y);
+
+    
+    i = 0;
+
+    for(a=0; a<32; a=a+1) begin
+        s = a;
+        #5;
+    end
+
+    
+    i = 1;
+
+    for(a=0; a<32; a=a+1) begin
+        s = a;
+        #5;
+    end
+
+    $finish;
+
+end
+
+endmodule
