@@ -1,0 +1,30 @@
+module encoder2_tb();
+
+reg i0, i1;
+wire y;
+
+encoder2 dut(
+    .i0(i0),
+    .i1(i1),
+    .y(y)
+);
+
+integer a;
+
+initial begin
+
+    $dumpfile("encoder2.vcd");
+    $dumpvars(0, encoder2_tb);
+
+    $monitor("i0=%b, i1=%b, y=%b", i0, i1, y);
+
+    for(a=0; a<4; a=a+1) begin
+        {i0,i1} = a;
+        #5;
+    end
+
+    $finish;
+
+end
+
+endmodule
