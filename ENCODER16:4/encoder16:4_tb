@@ -1,0 +1,30 @@
+module encoder16to4_tb();
+
+reg [15:0] i;
+wire [3:0] y;
+
+encoder16to4 dut(
+    .i(i),
+    .y(y)
+);
+
+integer k;
+
+initial begin
+
+    $dumpfile("encoder16to4.vcd");
+    $dumpvars(0, encoder16to4_tb);
+
+    $monitor("i=%b, y=%b", i, y);
+
+    for(k=0; k<16; k=k+1) begin
+        i = 16'b0;
+        i[k] = 1'b1;
+        #5;
+    end
+
+    $finish;
+
+end
+
+endmodule
