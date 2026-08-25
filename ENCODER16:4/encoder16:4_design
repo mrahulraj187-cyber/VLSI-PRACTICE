@@ -1,0 +1,17 @@
+module encoder16to4(
+    input [15:0] i,
+    output reg [3:0] y
+);
+
+integer k;
+
+always @(*) begin
+    y = 4'b0000;
+
+    for(k=0; k<16; k=k+1) begin
+        if(i[k] == 1'b1)
+            y = k;
+    end
+end
+
+endmodule
