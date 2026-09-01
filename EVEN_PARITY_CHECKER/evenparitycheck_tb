@@ -1,0 +1,27 @@
+module even_parity_checker_tb();
+
+reg [3:0] a;
+wire error;
+
+even_parity_checker dut(
+    .a(a),
+    .error(error)
+);
+
+integer k;
+
+initial begin
+    $dumpfile("even_parity_checker.vcd");
+    $dumpvars(0, even_parity_checker_tb);
+
+    $monitor("a=%b, error=%b", a, error);
+
+    for(k=0; k<16; k=k+1) begin
+        a = k;
+        #5;
+    end
+
+    $finish;
+end
+
+endmodule
