@@ -1,0 +1,8 @@
+module odd_parity_checker(
+    input [3:0] a,
+    output error
+);
+
+assign error = ~(^a);
+
+endmodule
