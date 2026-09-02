@@ -1,0 +1,32 @@
+module majority_tb();
+
+reg a;
+reg b;
+reg c;
+wire majority;
+
+majority dut(
+    .a(a),
+    .b(b),
+    .c(c),
+    .majority(majority)
+);
+
+integer k;
+
+initial begin
+    $dumpfile("majority.vcd");
+    $dumpvars(0, majority_tb);
+
+    $monitor("a=%b, b=%b, c=%b, majority=%b",
+             a, b, c, majority);
+
+    for(k=0; k<8; k=k+1) begin
+        {a,b,c} = k;
+        #5;
+    end
+
+    $finish;
+end
+
+endmodule
