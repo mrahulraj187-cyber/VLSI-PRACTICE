@@ -1,0 +1,32 @@
+module minority_tb();
+
+reg a;
+reg b;
+reg c;
+wire minority;
+
+minority dut(
+    .a(a),
+    .b(b),
+    .c(c),
+    .minority(minority)
+);
+
+integer k;
+
+initial begin
+    $dumpfile("minority.vcd");
+    $dumpvars(0, minority_tb);
+
+    $monitor("a=%b, b=%b, c=%b, minority=%b",
+             a, b, c, minority);
+
+    for(k=0; k<8; k=k+1) begin
+        {a,b,c} = k;
+        #5;
+    end
+
+    $finish;
+end
+
+endmodule
