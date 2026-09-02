@@ -1,0 +1,10 @@
+module minority(
+    input a,
+    input b,
+    input c,
+    output minority
+);
+
+assign minority = (~a & ~b) | (~b & ~c) | (~a & ~c);
+
+endmodule
