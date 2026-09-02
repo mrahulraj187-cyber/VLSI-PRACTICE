@@ -1,0 +1,10 @@
+module majority(
+    input a,
+    input b,
+    input c,
+    output majority
+);
+
+assign majority = (a&b) | (b&c) | (a&c);
+
+endmodule
