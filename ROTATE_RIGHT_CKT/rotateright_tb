@@ -1,0 +1,31 @@
+module rotate_right_tb();
+
+reg [3:0] a;
+reg [1:0] s;
+wire [3:0] y;
+
+rotate_right dut(
+    .a(a),
+    .s(s),
+    .y(y)
+);
+
+integer k;
+
+initial begin
+    $dumpfile("rotate_right.vcd");
+    $dumpvars(0, rotate_right_tb);
+
+    $monitor("a=%b, s=%b, y=%b", a, s, y);
+
+    a = 4'b1011;
+
+    for(k=0; k<4; k=k+1) begin
+        s = k;
+        #5;
+    end
+
+    $finish;
+end
+
+endmodule
