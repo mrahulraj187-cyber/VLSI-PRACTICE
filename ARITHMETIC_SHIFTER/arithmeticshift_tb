@@ -1,0 +1,31 @@
+module arithmetic_shifter_tb();
+
+reg signed [3:0] a;
+reg [1:0] s;
+wire signed [3:0] y;
+
+arithmetic_shifter dut(
+    .a(a),
+    .s(s),
+    .y(y)
+);
+
+integer k;
+
+initial begin
+    $dumpfile("arithmetic_shifter.vcd");
+    $dumpvars(0, arithmetic_shifter_tb);
+
+    $monitor("a=%b, s=%b, y=%b", a, s, y);
+
+    a = 4'b1011;
+
+    for(k=0; k<4; k=k+1) begin
+        s = k;
+        #5;
+    end
+
+    $finish;
+end
+
+endmodule
