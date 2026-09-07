@@ -1,0 +1,14 @@
+module max_finder(
+    input [3:0] a,
+    input [3:0] b,
+    output reg [3:0] max
+);
+
+always @(*) begin
+    if(a > b)
+        max = a;
+    else
+        max = b;
+end
+
+endmodule
