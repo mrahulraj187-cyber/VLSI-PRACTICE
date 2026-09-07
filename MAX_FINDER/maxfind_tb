@@ -1,0 +1,30 @@
+module max_finder_tb();
+
+reg [3:0] a;
+reg [3:0] b;
+wire [3:0] max;
+
+max_finder dut(
+    .a(a),
+    .b(b),
+    .max(max)
+);
+
+integer k;
+
+initial begin
+    $dumpfile("max_finder.vcd");
+    $dumpvars(0, max_finder_tb);
+
+    $monitor("a=%d, b=%d, max=%d", a, b, max);
+
+    for(k=0; k<10; k=k+1) begin
+        a = k;
+        b = 9-k;
+        #5;
+    end
+
+    $finish;
+end
+
+endmodule
