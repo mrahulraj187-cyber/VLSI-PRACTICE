@@ -1,0 +1,14 @@
+module min_finder(
+    input [3:0] a,
+    input [3:0] b,
+    output reg [3:0] min
+);
+
+always @(*) begin
+    if(a < b)
+        min = a;
+    else
+        min = b;
+end
+
+endmodule
