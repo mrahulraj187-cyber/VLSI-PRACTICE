@@ -1,0 +1,30 @@
+module unsigned_adder_tb();
+
+reg [3:0] a;
+reg [3:0] b;
+wire [4:0] sum;
+
+unsigned_adder dut(
+    .a(a),
+    .b(b),
+    .sum(sum)
+);
+
+integer k;
+
+initial begin
+    $dumpfile("unsigned_adder.vcd");
+    $dumpvars(0, unsigned_adder_tb);
+
+    $monitor("a=%d, b=%d, sum=%d", a, b, sum);
+
+    for(k=0; k<16; k=k+1) begin
+        a = k;
+        b = 2;
+        #5;
+    end
+
+    $finish;
+end
+
+endmodule
