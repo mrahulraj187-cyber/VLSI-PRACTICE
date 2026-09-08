@@ -1,0 +1,18 @@
+module saturation_adder(
+    input [3:0] a,
+    input [3:0] b,
+    output reg [3:0] sum
+);
+
+reg [4:0] temp;
+
+always @(*) begin
+    temp = a + b;
+
+    if(temp > 15)
+        sum = 15;
+    else
+        sum = temp[3:0];
+end
+
+endmodule
