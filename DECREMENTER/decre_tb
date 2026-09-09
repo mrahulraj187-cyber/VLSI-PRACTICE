@@ -1,0 +1,24 @@
+module decrementer_tb();
+reg [3:0]a;
+wire[3:0]b;
+
+decrementer dut(
+    .a(a),
+    .b(b)
+);
+
+integer k;
+
+initial begin
+    $dumpfile("decrementer.vcd");
+    $dumpvars(0,decrementer_tb);
+    $monitor("a=%b,b=%b",a,b);
+
+    for(k=0 ; k<8 ;k=k+1)begin
+        a = k;
+        #5;
+
+    end
+    $finish;
+end
+endmodule 
