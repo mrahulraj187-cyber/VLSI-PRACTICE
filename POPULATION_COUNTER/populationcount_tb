@@ -1,0 +1,27 @@
+module population_counter_tb();
+
+reg [3:0] a;
+wire [2:0] count;
+
+population_counter dut(
+    .a(a),
+    .count(count)
+);
+
+integer k;
+
+initial begin
+    $dumpfile("population_counter.vcd");
+    $dumpvars(0, population_counter_tb);
+
+    $monitor("a=%b count=%d", a, count);
+
+    for(k=0; k<16; k=k+1) begin
+        a = k;
+        #5;
+    end
+
+    $finish;
+end
+
+endmodule
