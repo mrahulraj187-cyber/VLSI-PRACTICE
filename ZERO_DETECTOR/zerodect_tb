@@ -1,0 +1,27 @@
+module zero_detector_tb();
+
+reg [3:0] a;
+wire zero;
+
+zero_detector dut(
+    .a(a),
+    .zero(zero)
+);
+
+integer k;
+
+initial begin
+    $dumpfile("zero_detector.vcd");
+    $dumpvars(0, zero_detector_tb);
+
+    $monitor("a=%b zero=%b", a, zero);
+
+    for(k=0; k<16; k=k+1) begin
+        a = k;
+        #5;
+    end
+
+    $finish;
+end
+
+endmodule
