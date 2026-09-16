@@ -1,0 +1,31 @@
+module magnitude_comparator_tb();
+
+reg [3:0] a,b;
+wire gt,eq,lt;
+
+magnitude_comparator dut(
+    .a(a),
+    .b(b),
+    .gt(gt),
+    .eq(eq),
+    .lt(lt)
+);
+
+integer k;
+
+initial begin
+    $dumpfile("magnitude_comparator.vcd");
+    $dumpvars(0,magnitude_comparator_tb);
+
+    $monitor("a=%d b=%d gt=%b eq=%b lt=%b",a,b,gt,eq,lt);
+
+    for(k=0;k<16;k=k+1) begin
+        a=k;
+        b=8;
+        #5;
+    end
+
+    $finish;
+end
+
+endmodule
