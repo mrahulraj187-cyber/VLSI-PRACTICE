@@ -1,0 +1,10 @@
+module bcd_to_binary(
+    input [7:0] bcd,
+    output reg [7:0] binary
+);
+
+always @(*) begin
+    binary = (bcd[7:4] * 8'd10) + bcd[3:0];
+end
+
+endmodule
