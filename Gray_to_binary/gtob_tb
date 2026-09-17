@@ -1,0 +1,27 @@
+module gray_to_binary_tb();
+
+reg [3:0] g;
+wire [3:0] b;
+
+gray_to_binary dut(
+    .g(g),
+    .b(b)
+);
+
+integer k;
+
+initial begin
+    $dumpfile("gray_to_binary.vcd");
+    $dumpvars(0, gray_to_binary_tb);
+
+    $monitor("Gray=%b Binary=%b", g, b);
+
+    for(k=0; k<16; k=k+1) begin
+        g = k;
+        #5;
+    end
+
+    $finish;
+end
+
+endmodule
