@@ -17,7 +17,7 @@ initial begin
     $monitor("Gray=%b Binary=%b", g, b);
 
     for(k=0; k<16; k=k+1) begin
-        g = k;
+        g = k ^ (k >> 1);
         #5;
     end
 
