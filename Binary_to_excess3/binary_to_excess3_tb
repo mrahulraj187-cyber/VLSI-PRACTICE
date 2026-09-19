@@ -1,0 +1,27 @@
+module binary_to_excess3_tb();
+
+reg [3:0] binary;
+wire [3:0] excess3;
+
+binary_to_excess3 dut(
+    .binary(binary),
+    .excess3(excess3)
+);
+
+integer k;
+
+initial begin
+    $dumpfile("binary_to_excess3.vcd");
+    $dumpvars(0, binary_to_excess3_tb);
+
+    $monitor("Binary=%b Excess3=%b", binary, excess3);
+
+    for(k=0; k<10; k=k+1) begin
+        binary = k;
+        #5;
+    end
+
+    $finish;
+end
+
+endmodule
