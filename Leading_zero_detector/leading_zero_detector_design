@@ -1,0 +1,19 @@
+module leading_zero_detector(
+    input [3:0] a,
+    output reg [2:0] count
+);
+
+always @(*) begin
+    if (a[3] == 1'b1)
+        count = 3'd0;
+    else if (a[2] == 1'b1)
+        count = 3'd1;
+    else if (a[1] == 1'b1)
+        count = 3'd2;
+    else if (a[0] == 1'b1)
+        count = 3'd3;
+    else
+        count = 3'd4;
+end
+
+endmodule
