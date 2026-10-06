@@ -1,0 +1,43 @@
+module sr_latch_tb();
+
+reg s;
+reg r;
+reg en;
+wire q;
+wire qbar;
+
+sr_latch dut(
+    .s(s),
+    .r(r),
+    .en(en),
+    .q(q),
+    .qbar(qbar)
+);
+
+initial begin
+    $dumpfile("sr_latch.vcd");
+    $dumpvars(0,sr_latch_tb);
+    $monitor("s=%b,r=%b,en=%b,q=%b,qbar=%b",s,r,en,q,qbar);
+
+    en=1;s=0;r=0;
+    #10;
+
+    en=1;s=0;r=1;
+    #10;
+
+    en=1;s=1;r=0;
+    #10;
+
+    en=1;s=1;r=1;
+    #10;
+
+    en=0;s=1;r=0;
+    #10;
+
+    $finish;
+
+end
+endmodule
+
+
+
