@@ -1,0 +1,43 @@
+module jk_latch_tb();
+
+reg j;
+reg k;
+reg en;
+wire q;
+wire qbar;
+
+jk_latch dut(
+    .j(j),
+    .k(k),
+    .en(en),
+    .q(q),
+    .qbar(qbar)
+);
+
+initial begin
+    $dumpfile("jk_latch.vcd");
+    $dumpvars(0,jk_latch_tb);
+    $monitor("j=%b,k=%b,en=%b,q=%b,qbar=%b",j,k,en,q,qbar);
+
+    en=1;j=0;k=0;
+    #10;
+
+    en=1;j=0;k=1;
+    #10;
+
+    en=1;j=1;k=0;
+    #10;
+
+    en=1;j=1;k=1;
+    #10;
+
+    en=0;j=1;k=0;
+    #10;
+
+    $finish;
+
+end
+endmodule
+
+
+
