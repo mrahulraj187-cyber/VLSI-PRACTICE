@@ -1,0 +1,42 @@
+module t_flip_flop_tb();
+
+reg t, clk;
+wire q, qbar;
+
+t_flip_flop dut(
+    .t(t),
+    .clk(clk),
+    .q(q),
+    .qbar(qbar)
+);
+
+initial begin
+    $dumpfile("t_flip_flop.vcd");
+    $dumpvars(0, t_flip_flop_tb);
+
+    $monitor("t=%b clk=%b q=%b qbar=%b", t, clk, q, qbar);
+
+    clk = 0;
+
+    // Hold
+    t = 0;
+    #10;
+
+    // Toggle
+    t = 1;
+    #20;
+
+    // Hold
+    t = 0;
+    #10;
+
+    // Toggle
+    t = 1;
+    #20;
+
+    $finish;
+end
+
+always #5 clk = ~clk;
+
+endmodule
