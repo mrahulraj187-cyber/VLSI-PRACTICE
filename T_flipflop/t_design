@@ -1,0 +1,17 @@
+module t_flip_flop(
+    input t,
+    input clk,
+    output reg q,
+    output qbar
+);
+
+always @(posedge clk) begin
+    if (t)
+        q <= ~q;
+    else
+        q <= q;
+end
+
+assign qbar = ~q;
+
+endmodule
