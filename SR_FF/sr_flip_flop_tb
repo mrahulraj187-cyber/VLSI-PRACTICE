@@ -1,0 +1,43 @@
+module sr_flip_flop_tb();
+
+reg s, r, clk;
+wire q, qbar;
+
+sr_flip_flop dut(
+    .s(s),
+    .r(r),
+    .clk(clk),
+    .q(q),
+    .qbar(qbar)
+);
+
+initial begin
+    $dumpfile("sr_flip_flop.vcd");
+    $dumpvars(0, sr_flip_flop_tb);
+
+    $monitor("s=%b r=%b clk=%b q=%b qbar=%b",
+             s, r, clk, q, qbar);
+
+    clk = 0;
+
+    s = 0; r = 0;
+    #10;
+
+    s = 1; r = 0;
+    #10;
+
+    s = 0; r = 1;
+    #10;
+
+    s = 1; r = 1;
+    #10;
+
+    s = 0; r = 1;
+    #10;
+
+    $finish;
+end
+
+always #5 clk = ~clk;
+
+endmodule
