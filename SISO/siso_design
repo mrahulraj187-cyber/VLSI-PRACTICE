@@ -1,0 +1,17 @@
+module siso(
+    input serial_in,
+    input clk,
+    output reg serial_out
+);
+
+reg [3:0] q;
+
+always @(posedge clk) begin
+    q <= {q[2:0], serial_in};
+end
+
+always @(*) begin
+    serial_out = q[3];
+end
+
+endmodule
