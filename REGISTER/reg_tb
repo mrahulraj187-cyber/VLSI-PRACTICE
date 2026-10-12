@@ -1,0 +1,28 @@
+module register4_tb();
+
+reg [3:0] d;
+reg clk;
+wire [3:0] q;
+
+register4 dut(
+    .d(d),
+    .clk(clk),
+    .q(q)
+);
+
+initial begin
+    $dumpfile("register4.vcd");
+    $dumpvars(0, register4_tb);
+    $monitor("d=%b clk=%b q=%b", d, clk, q);
+
+    clk = 0;
+    d = 4'b0000;
+    #10 d = 4'b1011;
+    #10 d = 4'b1100;
+    #10 d = 4'b0101;
+    #10 $finish;
+end
+
+always #5 clk = ~clk;
+
+endmodule
