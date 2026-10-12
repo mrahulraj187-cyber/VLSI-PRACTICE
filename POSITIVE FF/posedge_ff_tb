@@ -1,0 +1,27 @@
+module posedge_ff_tb();
+
+reg d, clk;
+wire q;
+
+posedge_ff dut(
+    .d(d),
+    .clk(clk),
+    .q(q)
+);
+
+initial begin
+    $dumpfile("posedge_ff.vcd");
+    $dumpvars(0, posedge_ff_tb);
+    $monitor("d=%b clk=%b q=%b", d, clk, q);
+
+    clk = 0;
+    d = 0;
+    #5 d = 1;
+    #10 d = 0;
+    #10 d = 1;
+    #10 $finish;
+end
+
+always #5 clk = ~clk;
+
+endmodule
