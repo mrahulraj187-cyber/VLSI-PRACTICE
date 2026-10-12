@@ -1,0 +1,38 @@
+module piso_tb();
+
+reg [3:0] d;
+reg load, clk;
+wire serial_out;
+wire [3:0] q;
+
+piso dut(
+    .d(d),
+    .load(load),
+    .clk(clk),
+    .serial_out(serial_out),
+    .q(q)
+);
+
+initial begin
+    $dumpfile("piso.vcd");
+    $dumpvars(0, piso_tb);
+    $monitor("d=%b load=%b clk=%b q=%b serial_out=%b",
+             d, load, clk, q, serial_out);
+
+    clk = 0;
+    d = 4'b1011;
+    load = 1;
+    #10;
+
+    load = 0;
+    #10;
+    #10;
+    #10;
+    #10;
+
+    $finish;
+end
+
+always #5 clk = ~clk;
+
+endmodule
