@@ -1,0 +1,20 @@
+module piso(
+    input [3:0] d,
+    input load,
+    input clk,
+    output reg serial_out,
+    output reg [3:0] q
+);
+
+always @(posedge clk) begin
+    if (load)
+        q <= d;
+    else
+        q <= {1'b0, q[3:1]};
+end
+
+always @(*) begin
+    serial_out = q[0];
+end
+
+endmodule
