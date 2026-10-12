@@ -1,0 +1,28 @@
+module parallel_register_tb();
+
+reg [3:0] d;
+reg clk;
+wire [3:0] q;
+
+parallel_register dut(
+    .d(d),
+    .clk(clk),
+    .q(q)
+);
+
+initial begin
+    $dumpfile("parallel_register.vcd");
+    $dumpvars(0, parallel_register_tb);
+    $monitor("d=%b clk=%b q=%b", d, clk, q);
+
+    clk = 0;
+    d = 4'b0000;
+    #10 d = 4'b1011;
+    #10 d = 4'b1100;
+    #10 d = 4'b0101;
+    #10 $finish;
+end
+
+always #5 clk = ~clk;
+
+endmodule
